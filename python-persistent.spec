@@ -14,7 +14,7 @@ Summary:	Automatic persistence for Python objects
 Summary(pl.UTF-8):	Automytczne trwałe obiekty w Pythonie
 Name:		python-%{module}
 Version:	4.2.4.2
-Release:	1
+Release:	2
 License:	ZPL 2.1
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/p/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
@@ -102,6 +102,9 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/%{module}/*.py[co]
 %attr(755,root,root) %{py_sitedir}/%{module}/*.so
 %{py_sitedir}/%{module}-%{version}-py*.egg-info
+%dir %{_includedir}/python2.7/persistent/
+%{_includedir}/python2.7/persistent/cPersistence.h
+%{_includedir}/python2.7/persistent/ring.h
 %endif
 
 %if %{with python3}
@@ -113,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py3_sitedir}/%{module}/*.so
 %{py3_sitedir}/%{module}/__pycache__
 %{py3_sitedir}/%{module}-%{version}-py*.egg-info
+%dir %{_includedir}/python3.6m/persistent/
+%{_includedir}/python3.6m/persistent/cPersistence.h
+%{_includedir}/python3.6m/persistent/ring.h
 %endif
 
 %if %{with doc}
