@@ -1,6 +1,7 @@
 # TODO:
 # - check test failures: FAIL: test_ring_impl (persistent.tests.test_picklecache.PickleCacheTests)
 # - fix docs: Could not import extension repoze.sphinx.autointerface (exception: No module named 'repoze')
+# - delete/packages /usr/lib64/python*/site-packages/persistent/tests/
 # Conditional build:
 %bcond_with	doc	# don't build doc
 %bcond_with	tests	# do not perform "make test"
@@ -14,26 +15,20 @@ Summary:	Automatic persistence for Python objects
 Summary(pl.UTF-8):	Automytczne trwałe obiekty w Pythonie
 Name:		python-%{module}
 Version:	4.2.4.2
-Release:	3
+Release:	4
 License:	ZPL 2.1
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/p/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 # Source0-md5:	ce8886ff707814571299935fe84a4bc9
 URL:		http://www.zope.org/Products/ZODB
 BuildRequires:	rpm-pythonprov
-# for the py_build, py_install macros
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
 BuildRequires:	python-devel
-#BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel
-#BuildRequires:	python3-setuptools
 %endif
-# when using /usr/bin/env or other in-place substitutions
-#BuildRequires:	sed >= 4.0
-# replace with other requires if defined in setup.py
 Requires:	python-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -103,9 +98,9 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/%{module}/*.[ch]
 %attr(755,root,root) %{py_sitedir}/%{module}/*.so
 %{py_sitedir}/%{module}-%{version}-py*.egg-info
-%dir %{_includedir}/python2.7/persistent/
-%{_includedir}/python2.7/persistent/cPersistence.h
-%{_includedir}/python2.7/persistent/ring.h
+%dir %{py_incdir}/persistent/
+%{py_incdir}/persistent/cPersistence.h
+%{py_incdir}/persistent/ring.h
 %endif
 
 %if %{with python3}
@@ -118,9 +113,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py3_sitedir}/%{module}/*.so
 %{py3_sitedir}/%{module}/__pycache__
 %{py3_sitedir}/%{module}-%{version}-py*.egg-info
-%dir %{_includedir}/python3.6m/persistent/
-%{_includedir}/python3.6m/persistent/cPersistence.h
-%{_includedir}/python3.6m/persistent/ring.h
+%dir %{py3_incdir}/persistent/
+%{py3_incdir}/persistent/cPersistence.h
+%{py3_incdir}/persistent/ring.h
 %endif
 
 %if %{with doc}
