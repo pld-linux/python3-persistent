@@ -18,16 +18,19 @@ Version:	4.2.4.2
 Release:	6
 License:	ZPL 2.1
 Group:		Libraries/Python
-Source0:	https://files.pythonhosted.org/packages/source/p/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
+#Source0Download: https://pypi.org/simple/persistent/
+Source0:	https://files.pythonhosted.org/packages/source/p/persistent/%{pypi_name}-%{version}.tar.gz
 # Source0-md5:	ce8886ff707814571299935fe84a4bc9
 URL:		http://www.zope.org/Products/ZODB
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
 BuildRequires:	python-devel
+BuildRequires:	python-setuptools
 %endif
 %if %{with python3}
 BuildRequires:	python3-devel
+BuildRequires:	python3-setuptools
 %endif
 Requires:	python-modules
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -37,8 +40,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description -l pl.UTF-8
 
 %package -n python3-%{module}
-Summary:	-
-Summary(pl.UTF-8):	-
+Summary:	Automatic persistence for Python objects
+Summary(pl.UTF-8):	Automytczne trwałe obiekty w Pythonie
 Group:		Libraries/Python
 Requires:	python3-modules
 
