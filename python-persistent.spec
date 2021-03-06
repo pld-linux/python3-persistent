@@ -14,13 +14,13 @@
 Summary:	Automatic persistence for Python objects
 Summary(pl.UTF-8):	Automytczne trwałe obiekty w Pythonie
 Name:		python-%{module}
-Version:	4.2.4.2
-Release:	7
+Version:	4.6.4
+Release:	1
 License:	ZPL 2.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/persistent/
 Source0:	https://files.pythonhosted.org/packages/source/p/persistent/%{pypi_name}-%{version}.tar.gz
-# Source0-md5:	ce8886ff707814571299935fe84a4bc9
+# Source0-md5:	6878fd3a3008fb5b7da7a374155fd6c2
 URL:		http://www.zope.org/Products/ZODB
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
