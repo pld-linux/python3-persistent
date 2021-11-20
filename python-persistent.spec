@@ -15,7 +15,7 @@ Summary:	Automatic persistence for Python objects
 Summary(pl.UTF-8):	Automytczne trwałe obiekty w Pythonie
 Name:		python-%{module}
 Version:	4.6.4
-Release:	1
+Release:	2
 License:	ZPL 2.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/persistent/
