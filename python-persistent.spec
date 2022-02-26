@@ -5,12 +5,12 @@
 %bcond_without	python2 # CPython 2.x module
 %bcond_without	python3 # CPython 3.x module
 
-%define 	module	persistent
+%define		module	persistent
 Summary:	Automatic persistence for Python objects
 Summary(pl.UTF-8):	Automatyczne trwałe obiekty w Pythonie
 Name:		python-%{module}
 Version:	4.7.0
-Release:	1
+Release:	2
 License:	ZPL v2.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/persistent/
@@ -110,8 +110,6 @@ rm -rf $RPM_BUILD_ROOT
 %py_postclean
 %{__rm} $RPM_BUILD_ROOT%{py_sitedir}/persistent/*.[ch]
 %{__rm} -r $RPM_BUILD_ROOT%{py_sitedir}/persistent/tests
-# or package in -devel?
-%{__rm} -r $RPM_BUILD_ROOT%{py_incdir}/persistent
 %endif
 
 %if %{with python3}
@@ -119,8 +117,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{py3_sitedir}/persistent/*.[ch]
 %{__rm} -r $RPM_BUILD_ROOT%{py3_sitedir}/persistent/tests
-# or package in -devel?
-%{__rm} -r $RPM_BUILD_ROOT%{py3_incdir}/persistent
 %endif
 
 %clean
@@ -134,6 +130,7 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/persistent/*.py[co]
 %attr(755,root,root) %{py_sitedir}/persistent/*.so
 %{py_sitedir}/persistent-%{version}-py*.egg-info
+%{py_incdir}/persistent
 %endif
 
 %if %{with python3}
@@ -145,6 +142,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py3_sitedir}/persistent/*.so
 %{py3_sitedir}/persistent/__pycache__
 %{py3_sitedir}/persistent-%{version}-py*.egg-info
+%{py3_incdir}/persistent
 %endif
 
 %if %{with doc}
