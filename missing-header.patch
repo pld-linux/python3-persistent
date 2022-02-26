@@ -1,0 +1,10 @@
+--- persistent-4.7.0/setup.py~	2021-04-13 12:55:40.000000000 +0200
++++ persistent-4.7.0/setup.py	2022-02-26 10:10:22.686802135 +0100
+@@ -83,6 +83,7 @@
+     headers = [
+         'persistent/cPersistence.h',
+         'persistent/ring.h',
++        'persistent/_compat.h',
+     ]
+ 
+ setup(name='persistent',
