@@ -9,13 +9,13 @@
 Summary:	Automatic persistence for Python objects
 Summary(pl.UTF-8):	Automatyczne trwałe obiekty w Pythonie
 Name:		python-%{module}
-Version:	4.7.0
-Release:	6
+Version:	4.9.0
+Release:	1
 License:	ZPL v2.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/persistent/
 Source0:	https://files.pythonhosted.org/packages/source/p/persistent/%{module}-%{version}.tar.gz
-# Source0-md5:	dedb296b74082edf246fe48333065f46
+# Source0-md5:	e631644177ad0e5072d25e296de2eaef
 Patch0:		missing-header.patch
 URL:		https://www.zope.dev/
 %if %{with python2}
@@ -57,6 +57,20 @@ Ten pakiet zawiera ogólną implementację trwałych danych dla Pythona.
 Tworzy główny protokół, pozwalający obiektom w sposób przezroczysty
 współpracować z bazą danych taką jak ZODB.
 
+%package devel
+Summary:	Header files for C extensions using persisteny module
+Summary(pl.UTF-8):	Pliki nagłówkowe dla rozszerzeń w C korzystających z modułu persistent
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+Requires:	python-devel >= 1:2.7
+
+%description devel
+Header files for C extensions using persisteny module.
+
+%description devel -l pl.UTF-8
+Pliki nagłówkowe dla rozszerzeń w C korzystających z modułu
+persistent.
+
 %package -n python3-%{module}
 Summary:	Automatic persistence for Python objects
 Summary(pl.UTF-8):	Automatyczne trwałe obiekty w Pythonie
@@ -72,6 +86,20 @@ with a database such as the ZODB.
 Ten pakiet zawiera ogólną implementację trwałych danych dla Pythona.
 Tworzy główny protokół, pozwalający obiektom w sposób przezroczysty
 współpracować z bazą danych taką jak ZODB.
+
+%package -n python3-%{module}-devel
+Summary:	Header files for C extensions using persisteny module
+Summary(pl.UTF-8):	Pliki nagłówkowe dla rozszerzeń w C korzystających z modułu persistent
+Group:		Development/Libraries
+Requires:	python3-%{module} = %{version}-%{release}
+Requires:	python3-devel >= 1:3.5
+
+%description -n python3-%{module}-devel
+Header files for C extensions using persisteny module.
+
+%description -n python3-%{module}-devel -l pl.UTF-8
+Pliki nagłówkowe dla rozszerzeń w C korzystających z modułu
+persistent.
 
 %package apidocs
 Summary:	API documentation for Python persistent module
@@ -90,11 +118,21 @@ Dokumentacja API modułu Pythona persistent.
 
 %build
 %if %{with python2}
-%py_build %{?with_tests:test}
+%py_build
+
+%if %{with tests}
+PYTHONPATH=$(echo $(pwd)/build-2/lib.*) \
+zope-testrunner-2 --test-path=src -v
+%endif
 %endif
 
 %if %{with python3}
-%py3_build %{?with_tests:test}
+%py3_build
+
+%if %{with tests}
+PYTHONPATH=$(echo $(pwd)/build-3/lib.*) \
+zope-testrunner-3 --test-path=src -v
+%endif
 %endif
 
 %if %{with doc}
@@ -132,6 +170,9 @@ rm -rf $RPM_BUILD_ROOT
 %{py_sitedir}/persistent/*.py[co]
 %attr(755,root,root) %{py_sitedir}/persistent/*.so
 %{py_sitedir}/persistent-%{version}-py*.egg-info
+
+%files devel
+%defattr(644,root,root,755)
 %{py_incdir}/persistent
 %endif
 
@@ -144,6 +185,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{py3_sitedir}/persistent/*.so
 %{py3_sitedir}/persistent/__pycache__
 %{py3_sitedir}/persistent-%{version}-py*.egg-info
+
+%files -n python3-%{module}-devel
+%defattr(644,root,root,755)
 %{py3_incdir}/persistent
 %endif
 
