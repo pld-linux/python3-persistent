@@ -9,13 +9,14 @@
 Summary:	Automatic persistence for Python objects
 Summary(pl.UTF-8):	Automatyczne trwałe obiekty w Pythonie
 Name:		python-%{module}
-Version:	4.9.0
+# keep 4.x here for python2 support
+Version:	4.9.3
 Release:	1
 License:	ZPL v2.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/persistent/
 Source0:	https://files.pythonhosted.org/packages/source/p/persistent/%{module}-%{version}.tar.gz
-# Source0-md5:	e631644177ad0e5072d25e296de2eaef
+# Source0-md5:	8bc80f8c548f45631c85efb775a85dc1
 Patch0:		missing-header.patch
 URL:		https://www.zope.dev/
 %if %{with python2}
