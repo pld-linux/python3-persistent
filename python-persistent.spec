@@ -11,7 +11,7 @@ Summary(pl.UTF-8):	Automatyczne trwałe obiekty w Pythonie
 Name:		python-%{module}
 # keep 4.x here for python2 support
 Version:	4.9.3
-Release:	1
+Release:	2
 License:	ZPL v2.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/persistent/
