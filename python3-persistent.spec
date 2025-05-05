@@ -16,21 +16,23 @@ Source0:	https://files.pythonhosted.org/packages/source/p/persistent/%{module}-%
 # Source0-md5:	48ec39a6620f1f838d09b5a42014f4db
 Patch0:		missing-header.patch
 URL:		https://www.zope.dev/
-BuildRequires:	python3-cffi
-BuildRequires:	python3-devel >= 1:3.5
+BuildRequires:	python3-cffi >= 1.17
+BuildRequires:	python3-devel >= 1:3.8
 BuildRequires:	python3-setuptools
 %if %{with tests}
 BuildRequires:	python3-manuel
+BuildRequires:	python3-zope.deferredimport
 BuildRequires:	python3-zope.interface
 BuildRequires:	python3-zope.testrunner
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
+BuildRequires:	python3-sphinx_rtd_theme
 BuildRequires:	python3-repoze.sphinx.autointerface
 BuildRequires:	sphinx-pdg-3
 %endif
-Requires:	python3-modules >= 1:3.5
+Requires:	python3-modules >= 1:3.8
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,7 +50,7 @@ Summary:	Header files for C extensions using persisteny module
 Summary(pl.UTF-8):	Pliki nagłówkowe dla rozszerzeń w C korzystających z modułu persistent
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	python3-devel >= 1:2.7
+Requires:	python3-devel >= 1:3.8
 
 %description devel
 Header files for C extensions using persisteny module.
